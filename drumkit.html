@@ -37,6 +37,84 @@
     <audio data-key="l" src="./songs/tink.mp3"></audio>
     
     <!-- JavaScript Link -->
-     <script type="module" src="/index.js"></script>
+     <script>
+        const text = [{
+            name: 'A',
+            type: '<span class="key-type">Clap</span>'
+        },{
+            name: 'S',
+            type: '<span class="key-type">HitHat</span>'
+        },{
+            name: 'D',
+            type: '<span class="key-type">Kick</span>'
+        },{
+            name: 'F',
+            type: '<span class="key-type">OpenHat</span>'
+        },{
+            name: 'G',
+            type: '<span class="key-type">Boom</span>'
+        },{
+            name: 'H',
+            type: '<span class="key-type">Ride</span>'
+        },{
+            name: 'J',
+            type: '<span class="key-type">Snare</span>'
+        },{
+            name: 'K',
+            type: '<span class="key-type">Tom</span>'
+        },{
+            name: 'L',
+            type: '<span class="key-type">Tink</span>'
+        }];
+
+        displayButtonText(text);
+
+        window.addEventListener('keydown', (event) => {
+            playAudio(event.key);
+        });
+
+        window.addEventListener('keyup', (event) => {
+            removePlayingClass(event.key);
+        });
+
+        document.querySelectorAll('.key').forEach((keyElement) => {
+            keyElement.addEventListener('click', () => {
+                const key = keyElement.getAttribute('data-key');
+
+                playAudio(key);
+                setTimeout(()=>{
+                    removePlayingClass(key);
+                },200);
+            })
+        })
+
+        function displayButtonText (text) {
+            text.forEach((text) => {
+                const {name, type} = text;
+                let keyDiv = document.querySelector(`div[data-key="${name.toLowerCase()}"]`);
+                if (keyDiv) {
+                    keyDiv.innerHTML = name + type;
+                };
+            })
+        };
+
+        function playAudio(key) {
+            const keyElement = document.querySelector(`div[data-key="${key}"]`);
+            const audio = document.querySelector(`audio[data-key="${key}"]`);
+            if (!audio || !keyElement)return;
+            audio.currentTime = 0;
+            audio.play();
+
+            keyElement.classList.add('playing');
+        };
+
+        function removePlayingClass(key) {
+            const keyElement = document.querySelector(`div[data-key="${key}"]`);
+
+            if (keyElement) {
+            keyElement.classList.remove('playing');
+            };
+        };
+     </script>
 </body>
 </html>
