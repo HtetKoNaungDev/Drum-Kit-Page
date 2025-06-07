@@ -1,0 +1,100 @@
+body {
+    position: relative;
+    margin: 0;
+    padding: 20px;
+    background-image: url(/image/pexels-joshsorenson-995301.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+}
+
+main, .content {
+    position: relative;
+    z-index: 2;
+}
+
+.description {
+    color: yellow;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    z-index: 3;
+}
+
+.keys {
+    display: grid;
+    grid-template-columns: repeat(3, 80px);
+    grid-template-rows: repeat(3, 80px);
+    gap: 15px;
+    justify-content: center;
+}
+
+.key {
+    background-color: #c01414;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    border-radius: 8px;
+    font-size: 25px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    /* transition: all 0.07s; */
+}
+
+.playing {
+    transform: scale(1.05);
+    background-color: bisque;
+    color: #c01414;
+}
+
+.key-type {
+    font-size: 15px;
+    color: rgb(101, 201, 19);
+}
+
+@media (min-width: 400px) {
+    .keys {
+        display: grid;
+        grid-template-columns: repeat(4, 80px);
+        grid-template-rows: repeat(3, 80px);
+        gap: 15px;
+        justify-content: center;
+    }
+}
+
+@media (min-width: 600px) {
+    .keys {
+        display: grid;
+        grid-template-columns: repeat(6, 80px);
+        grid-template-rows: repeat(2, 80px);
+        gap: 15px;
+        justify-content: center;
+    }
+}
+
+@media (min-width: 900px) {
+    .keys {
+        display: grid;
+        grid-template-columns: repeat(9, 80px);
+        gap: 15px;
+        justify-content: center;
+    }
+}
